@@ -1,0 +1,86 @@
+header {
+  background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark));
+  padding: 15px 0; /* Use container for side padding */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure header stays on top */
+}
+
+.header-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-family: var(--font-family-primary);
+  font-size: 1.8em;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 25px; /* Spacing between nav items */
+}
+
+nav ul li a {
+  font-family: var(--font-family-secondary);
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active-link { /* Style for active link */
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; /* Keep text color white or change as preferred */
+}
+
+.header-actions {
+  /* Styles for cart icon or other action items */
+}
+
+.cart-icon {
+  font-size: 1.5em;
+  color: white;
+  text-decoration: none;
+}
+
+/* Basic responsive navigation for smaller screens */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .header-actions {
+    margin-top: 10px;
+  }
+}

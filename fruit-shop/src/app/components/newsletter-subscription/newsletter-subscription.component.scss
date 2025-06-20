@@ -1,0 +1,66 @@
+.newsletter-section {
+  padding: 40px 20px;
+  background-color: var(--light-green-background); /* Use CSS variable */
+  text-align: center;
+  margin-top: 30px;
+}
+
+.newsletter-section h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--primary-green-dark); /* Use CSS variable */
+}
+
+.newsletter-section p {
+  margin-bottom: 20px;
+  color: var(--text-color-light); /* Use CSS variable */
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color); /* Use CSS variable */
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: .25rem;
+}
+
+.btn-subscribe {
+  padding: 10px 20px;
+  background-color: var(--primary-green); /* Use CSS variable */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 40px;
+}
+
+.btn-subscribe:hover {
+  background-color: var(--primary-green-dark); /* Use CSS variable */
+}
+/* Responsive adjustments for newsletter are in styles.scss */

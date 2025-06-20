@@ -1,0 +1,123 @@
+/* Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --primary-green: #4CAF50;
+  --primary-green-dark: #43a047;
+  --primary-green-light: #66bb6a;
+  --accent-color: #ff9800; /* Example accent: Orange */
+  --text-color: #333333;
+  --text-color-light: #555555;
+  --background-color: #ffffff;
+  --light-gray-background: #f9f9f9;
+  --light-green-background: #e8f5e9;
+  --border-color: #e0e0e0;
+  --font-family-primary: "Montserrat", sans-serif;
+  --font-family-secondary: "Roboto", sans-serif;
+}
+
+body {
+  font-family: var(--font-family-secondary);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-primary);
+  color: var(--primary-green-dark);
+  font-weight: 700;
+}
+
+a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-green-dark);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
+/* Responsive Typography (example) */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller cards */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  .product-grid {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+  }
+  .newsletter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .newsletter-form .form-group,
+  .newsletter-form button {
+    width: 100%;
+  }
+  .newsletter-form button {
+    margin-top: 10px;
+  }
+}
+
+/* Ensure app-root takes full height if necessary for sticky footer later */
+html, body {
+  height: 100%;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet + * { /* This is a generic selector, might need to be more specific */
+  flex-grow: 1;
+}
+
+/* Animations - basic fade-in for elements if desired */
+.fade-in {
+  animation: fadeInAnimation 0.5s ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
