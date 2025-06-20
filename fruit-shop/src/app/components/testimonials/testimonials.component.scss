@@ -1,0 +1,52 @@
+.testimonials-section {
+  padding: 40px 20px;
+  background-color: var(--light-gray-background); /* Use CSS variable */
+  text-align: center;
+}
+
+.testimonials-section h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: var(--text-color); /* Use CSS variable */
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background-color: var(--background-color); /* Use CSS variable */
+  border: 1px solid var(--border-color); /* Use CSS variable */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.testimonial-card .quote {
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--text-color-light); /* Use CSS variable */
+  margin-bottom: 15px;
+}
+
+.testimonial-card .name {
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--primary-green); /* Use CSS variable */
+  margin-bottom: 5px;
+}
+
+.testimonial-card .location {
+  font-size: 0.9em;
+  color: #777;
+}

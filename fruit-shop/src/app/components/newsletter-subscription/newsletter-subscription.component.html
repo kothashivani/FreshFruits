@@ -1,0 +1,14 @@
+<section class="newsletter-section">
+  <h2>Subscribe to Our Newsletter</h2>
+  <p>Get the latest updates on new products and special offers.</p>
+  <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()" class="newsletter-form">
+    <div class="form-group">
+      <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email is invalid</div>
+      </div>
+    </div>
+    <button type="submit" class="btn-subscribe">Subscribe</button>
+  </form>
+</section>
