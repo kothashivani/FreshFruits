@@ -14,6 +14,9 @@ import { ProductsPlaceholderComponent } from './pages/products-placeholder/produ
 import { AboutPlaceholderComponent } from './pages/about-placeholder/about-placeholder.component';
 import { ContactPlaceholderComponent } from './pages/contact-placeholder/contact-placeholder.component';
 import { CartPlaceholderComponent } from './pages/cart-placeholder/cart-placeholder.component';
+import { AuthPageComponent } from './pages/auth-page/auth-page.component';
+import { ProfileDropdownComponent } from './components/profile-dropdown/profile-dropdown.component';
+import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { CartPlaceholderComponent } from './pages/cart-placeholder/cart-placehol
     ProductsPlaceholderComponent,
     AboutPlaceholderComponent,
     ContactPlaceholderComponent,
-    CartPlaceholderComponent
+    CartPlaceholderComponent,
+    AuthPageComponent,
+    ProfileDropdownComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,

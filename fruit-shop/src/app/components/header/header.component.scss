@@ -1,11 +1,11 @@
 header {
   background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark));
-  padding: 15px 0; /* Use container for side padding */
+  padding: 10px 0; /* Reduced padding slightly */
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
-  z-index: 1000; /* Ensure header stays on top */
+  z-index: 1000;
 }
 
 .header-container {
@@ -18,11 +18,19 @@ header {
 }
 
 .logo a {
-  font-family: var(--font-family-primary);
-  font-size: 1.8em;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
+  display: inline-block; /* For proper image display */
+}
+
+.logo-image {
+  height: 40px; /* Adjust as needed */
+  width: auto;
+  vertical-align: middle; /* Align image nicely with any text if present */
+}
+
+nav {
+  flex-grow: 1; /* Allow nav to take up space */
+  display: flex;
+  justify-content: center; /* Center nav links */
 }
 
 nav ul {
@@ -30,7 +38,7 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 25px; /* Spacing between nav items */
+  gap: 25px;
 }
 
 nav ul li a {
@@ -44,43 +52,98 @@ nav ul li a {
 }
 
 nav ul li a:hover,
-nav ul li a.active-link { /* Style for active link */
+nav ul li a.active-link {
   background-color: rgba(255, 255, 255, 0.2);
-  color: white; /* Keep text color white or change as preferred */
 }
 
 .header-actions {
-  /* Styles for cart icon or other action items */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between login button and cart */
+}
+
+.btn-login {
+  background-color: var(--accent-color, #ff9800); /* Use accent color or a fallback */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: darken(var(--accent-color, #ff9800), 10%);
+}
+
+.cart-icon-link {
+  text-decoration: none;
+  position: relative; /* For potential cart count badge */
 }
 
 .cart-icon {
-  font-size: 1.5em;
+  font-size: 1.6em; /* Slightly larger cart icon */
   color: white;
-  text-decoration: none;
 }
 
-/* Basic responsive navigation for smaller screens */
+/* Responsive navigation - existing styles should be checked if they conflict */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
   }
 
   nav {
+    order: 3; /* Nav comes last in column layout */
+    width: 100%; /* Full width for nav */
     margin-top: 10px;
   }
 
   nav ul {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Stack nav links */
+    align-items: center; /* Center nav links */
     gap: 10px;
   }
 
   .logo {
+    order: 1; /* Logo first */
     margin-bottom: 10px;
   }
 
   .header-actions {
-    margin-top: 10px;
+    order: 2; /* Actions (login, cart) second */
+    margin-bottom: 10px;
   }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens if necessary */
+  .btn-login {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+}
+
+.btn-profile {
+  background-color: var(--primary-green, #4CAF50);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-profile:hover {
+  background-color: var(--primary-green-dark, #388e3c);
+}
+
+.profile-button-wrapper {
+  position: relative; /* This is crucial for absolute positioning of the dropdown */
 }

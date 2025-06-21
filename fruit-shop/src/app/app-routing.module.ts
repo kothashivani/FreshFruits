@@ -5,6 +5,8 @@ import { ProductsPlaceholderComponent } from './pages/products-placeholder/produ
 import { AboutPlaceholderComponent } from './pages/about-placeholder/about-placeholder.component';
 import { ContactPlaceholderComponent } from './pages/contact-placeholder/contact-placeholder.component';
 import { CartPlaceholderComponent } from './pages/cart-placeholder/cart-placeholder.component';
+import { AuthPageComponent } from './pages/auth-page/auth-page.component';
+import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'about', component: AboutPlaceholderComponent },
   { path: 'contact', component: ContactPlaceholderComponent },
   { path: 'cart', component: CartPlaceholderComponent },
+  { path: 'auth', component: AuthPageComponent },
+  { path: 'my-orders', component: MyOrdersComponent },
   // Add other routes here if any
 ];
 
