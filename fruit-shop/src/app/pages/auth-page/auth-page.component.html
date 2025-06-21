@@ -1,0 +1,69 @@
+<div class="auth-container">
+  <div class="auth-form-wrapper">
+    <h2>{{ isLoginMode ? "Login" : "Sign Up" }}</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+    <!-- Login Form -->
+    <form *ngIf="isLoginMode" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" formControlName="email" class="form-control" placeholder="you@example.com" [ngClass]="{ 'is-invalid': lf.email.touched && lf.email.errors }">
+        <div *ngIf="lf.email.touched && lf.email.errors" class="invalid-feedback">
+          <div *ngIf="lf.email.errors.required">Email is required.</div>
+          <div *ngIf="lf.email.errors.email">Please enter a valid email.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" formControlName="password" class="form-control" placeholder="Password" [ngClass]="{ 'is-invalid': lf.password.touched && lf.password.errors }">
+        <div *ngIf="lf.password.touched && lf.password.errors" class="invalid-feedback">
+          <div *ngIf="lf.password.errors.required">Password is required.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form *ngIf="!isLoginMode" [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
+      <div class="form-group">
+        <label for="signupUsername">Username</label>
+        <input type="text" id="signupUsername" formControlName="username" class="form-control" placeholder="Choose a username" [ngClass]="{ 'is-invalid': sf.username.touched && sf.username.errors }">
+        <div *ngIf="sf.username.touched && sf.username.errors" class="invalid-feedback">
+          <div *ngIf="sf.username.errors.required">Username is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" formControlName="email" class="form-control" placeholder="you@example.com" [ngClass]="{ 'is-invalid': sf.email.touched && sf.email.errors }">
+        <div *ngIf="sf.email.touched && sf.email.errors" class="invalid-feedback">
+          <div *ngIf="sf.email.errors.required">Email is required.</div>
+          <div *ngIf="sf.email.errors.email">Please enter a valid email.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" formControlName="password" class="form-control" placeholder="Create a password (min. 6 characters)" [ngClass]="{ 'is-invalid': sf.password.touched && sf.password.errors }">
+        <div *ngIf="sf.password.touched && sf.password.errors" class="invalid-feedback">
+          <div *ngIf="sf.password.errors.required">Password is required.</div>
+          <div *ngIf="sf.password.errors.minlength">Password must be at least 6 characters.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" placeholder="Confirm your password" [ngClass]="{ 'is-invalid': (sf.confirmPassword.touched || signupForm.touched) && signupForm.errors?.mismatch }">
+        <div *ngIf="(sf.confirmPassword.touched || signupForm.touched) && signupForm.errors?.mismatch" class="invalid-feedback">
+          <div>Passwords do not match.</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+
+    <div class="toggle-mode">
+      <button class="btn btn-link" (click)="toggleMode()">
+        {{ isLoginMode ? "Need an account? Sign Up" : "Already have an account? Login" }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,32 @@
 <header>
   <div class="header-container">
     <div class="logo">
-      <a routerLink="/">FreshFruits</a>
+      <a routerLink="/">
+        <img src="assets/images/logo.svg" alt="FreshFruits Logo" class="logo-image">
+      </a>
     </div>
     <nav>
       <ul>
         <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li><a routerLink="/products" routerLinkActive="active-link">Products</a></li> <!-- Placeholder -->
-        <li><a routerLink="/about" routerLinkActive="active-link">About Us</a></li>   <!-- Placeholder -->
-        <li><a routerLink="/contact" routerLinkActive="active-link">Contact</a></li> <!-- Placeholder -->
+        <li><a routerLink="/products" routerLinkActive="active-link">Products</a></li>
+        <li><a routerLink="/about" routerLinkActive="active-link">About Us</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active-link">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <!-- Future icons like cart, user profile can go here -->
-      <a routerLink="/cart" class="cart-icon">🛒</a>
+      <ng-container *ngIf="!(authService.isLoggedIn$ | async); else profileSection">
+        <button class="btn btn-login" (click)="navigateToAuth()">Login</button>
+      </ng-container>
+      <ng-template #profileSection>
+        <div class="profile-button-wrapper"> <!-- Wrapper for positioning dropdown relative to button -->
+          <button class="btn btn-profile" (click)="toggleProfileDropdown()">Profile</button>
+          <app-profile-dropdown *ngIf="showProfileDropdown" (closeDropdown)="closeProfileDropdown()"></app-profile-dropdown>
+        </div>
+      </ng-template>
+
+      <a routerLink="/cart" class="cart-icon-link">
+        <span class="cart-icon">🛒</span>
+      </a>
     </div>
   </div>
 </header>

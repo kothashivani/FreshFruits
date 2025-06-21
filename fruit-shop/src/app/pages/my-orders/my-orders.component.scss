@@ -1,0 +1,21 @@
+.my-orders-container {
+  padding: 40px 20px;
+  text-align: center;
+  min-height: calc(100vh - 200px); /* Example height, adjust based on header/footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-gray-background, #f9f9f9);
+}
+
+.my-orders-container h2 {
+  color: var(--primary-green-dark, #388e3c);
+  margin-bottom: 20px;
+}
+
+.my-orders-container p {
+  font-size: 1.1em;
+  color: var(--text-color-light, #555);
+  margin-bottom: 15px;
+}

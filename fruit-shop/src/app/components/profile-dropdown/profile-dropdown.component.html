@@ -1,0 +1,11 @@
+<div class="profile-dropdown-menu">
+  <div *ngIf="currentUser" class="dropdown-header">
+    <p class="username">Hi, {{ currentUser.username }}!</p>
+    <p class="email">{{ currentUser.email }}</p>
+  </div>
+  <hr *ngIf="currentUser">
+  <ul>
+    <li><a (click)="navigateToMyOrders()" role="button">My Orders</a></li>
+    <li><a (click)="logout()" role="button">Logout</a></li>
+  </ul>
+</div>
