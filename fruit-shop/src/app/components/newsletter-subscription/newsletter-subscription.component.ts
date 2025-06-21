@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import F
   styleUrls: ['./newsletter-subscription.component.scss']
 })
 export class NewsletterSubscriptionComponent implements OnInit {
-  newsletterForm: FormGroup;
+  newsletterForm!: FormGroup;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder) { }
