@@ -10,7 +10,7 @@
   min-height: 400px; /* Minimum height */
   max-height: 600px; /* Maximum height */
   /* Placeholder background image - replace with actual image URL */
-  background-image: url("https://via.placeholder.com/1920x600/4CAF50/FFFFFF?Text=Fresh+Fruits+Banner");
+  background-image: url("https://images.pexels.com/photos/2090901/pexels-photo-2090901.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&dpr=1");
   background-size: cover;
   background-position: center center;
   display: flex;
@@ -74,7 +74,6 @@
 }
 
 .btn-hero-cta:hover {
-  background-color: darken(var(--accent-color, #ff9800), 10%); /* SCSS darken() will fail with CSS var here. Need a different approach */
   /* Using a simple brightness filter for hover as an alternative to SCSS darken with CSS var */
   filter: brightness(0.9);
   transform: translateY(-2px);
@@ -135,4 +134,43 @@
   .product-grid-section h2 {
     font-size: 1.8em;
   }
+}
+
+/* Animation Definitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0; /* Start hidden */
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0; /* Start hidden */
+}
+
+.animate-delay-1 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.8s;
 }
