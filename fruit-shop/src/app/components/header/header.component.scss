@@ -23,6 +23,11 @@ header {
   display: flex; /* Align items in a row */
   align-items: center; /* Vertically align items */
   text-decoration: none; /* Remove underline from link */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.logo a:hover {
+  opacity: 0.8;
 }
 
 .logo-prefix-image {
@@ -58,7 +63,7 @@ nav ul li a {
   font-weight: 500;
   padding: 8px 12px;
   border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 nav ul li a:hover,
@@ -82,7 +87,7 @@ nav ul li a.active-link {
   font-weight: 500;
   font-size: 0.9em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-login:hover {
@@ -147,7 +152,7 @@ nav ul li a.active-link {
   font-weight: 500;
   font-size: 0.9em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-profile:hover {
