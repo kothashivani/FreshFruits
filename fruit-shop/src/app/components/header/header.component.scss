@@ -20,13 +20,21 @@ header {
 }
 
 .logo a {
-  display: inline-block; /* For proper image display */
+  display: flex; /* Align items in a row */
+  align-items: center; /* Vertically align items */
+  text-decoration: none; /* Remove underline from link */
 }
 
-.logo-image {
+.logo-prefix-image {
+  height: 24px; /* Adjust as needed */
+  width: auto;
+  margin-right: 8px; /* Space between prefix icon and main logo/text */
+}
+
+.logo-main-image {
   height: 40px; /* Adjust as needed */
   width: auto;
-  vertical-align: middle; /* Align image nicely with any text if present */
+  vertical-align: middle;  /* Keep for baseline consistency if flex alignment is overridden or for non-flex fallback */
 }
 
 nav {

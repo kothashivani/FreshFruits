@@ -1,31 +1,138 @@
 .home-container {
-  padding: 20px;
+  /* No top padding if hero is full-width bleed */
 }
 
-.hero-section {
+/* New Hero Section Styles */
+.hero-section-full-width {
+  position: relative; /* For overlay and content positioning */
+  width: 100%;
+  height: 70vh; /* Adjust height as needed, viewport height percentage */
+  min-height: 400px; /* Minimum height */
+  max-height: 600px; /* Maximum height */
+  /* Placeholder background image - replace with actual image URL */
+  background-image: url("https://via.placeholder.com/1920x600/4CAF50/FFFFFF?Text=Fresh+Fruits+Banner");
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark)); /* Use CSS variables */
-  color: white;
-  border-radius: 8px;
-  margin-bottom: 30px;
+  color: white; /* Default text color for hero content */
+  overflow: hidden; /* Ensure overlay doesnt cause scrollbars if it uses pseudo-elements that go outside */
 }
 
-.hero-section h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  color: white; /* Override global h1 */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+  z-index: 1; /* Below content, above background image */
+}
+
+.hero-content {
+  position: relative; /* To sit on top of the overlay */
+  z-index: 2;
+  padding: 20px;
+  max-width: 800px; /* Max width for content for readability */
+}
+
+.hero-headline {
+  font-family: var(--font-family-primary, sans-serif);
+  font-size: 3.5em; /* Large headline */
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow for readability */
+  margin-bottom: 0.5em;
+}
+
+.hero-subheadline {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #f0f0f0; /* Slightly off-white for subheadline */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  margin-bottom: 1.5em;
+  max-width: 600px; /* Limit width of subheadline */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-hero-cta {
+  background-color: var(--accent-color, #ff9800);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 50px; /* Pill-shaped button */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-hero-cta:hover {
+  background-color: darken(var(--accent-color, #ff9800), 10%); /* SCSS darken() will fail with CSS var here. Need a different approach */
+  /* Using a simple brightness filter for hover as an alternative to SCSS darken with CSS var */
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+/* End New Hero Section Styles */
+
+
+/* Product Grid Section - ensure it has some top margin if home-container padding is removed */
+.product-grid-section {
+  padding: 40px 20px; /* Add padding here now */
 }
 
 .product-grid-section h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: var(--text-color); /* Use CSS variable */
+  margin-bottom: 30px; /* Increased margin */
+  color: var(--text-color, #333);
+  font-size: 2.2em; /* Slightly larger */
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 25px; /* Increased gap */
 }
-/* Responsive adjustments for product-grid are in styles.scss */
+
+/* Responsive adjustments for hero */
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: 2.8em;
+  }
+  .hero-subheadline {
+    font-size: 1.2em;
+  }
+  .btn-hero-cta {
+    padding: 10px 25px;
+    font-size: 1.1em;
+  }
+  .hero-section-full-width {
+    height: 60vh; /* Adjust height for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 2em;
+  }
+  .hero-subheadline {
+    font-size: 1em;
+  }
+  .btn-hero-cta {
+    padding: 8px 20px;
+    font-size: 1em;
+  }
+  .hero-section-full-width {
+    height: 50vh; /* Adjust height for mobile */
+    min-height: 300px;
+  }
+  .product-grid-section h2 {
+    font-size: 1.8em;
+  }
+}
