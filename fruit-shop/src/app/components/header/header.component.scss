@@ -1,3 +1,5 @@
+$accent-color-sass: #ff9800;
+
 header {
   background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark));
   padding: 10px 0; /* Reduced padding slightly */
@@ -76,7 +78,7 @@ nav ul li a.active-link {
 }
 
 .btn-login:hover {
-  background-color: darken(var(--accent-color, #ff9800), 10%);
+  background-color: darken($accent-color-sass, 10%);
 }
 
 .cart-icon-link {
