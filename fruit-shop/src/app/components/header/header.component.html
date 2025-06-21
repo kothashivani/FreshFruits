@@ -2,7 +2,9 @@
   <div class="header-container">
     <div class="logo">
       <a routerLink="/">
-        <img src="assets/images/logo.svg" alt="FreshFruits Logo" class="logo-image">
+        <img src="assets/images/logo-prefix-icon.svg" alt="Brand Icon" class="logo-prefix-image">
+        <img src="assets/images/logo.svg" alt="FreshFruits Logo" class="logo-main-image">
+        <!-- <span class="logo-text">FreshFruits</span> Optional text if needed -->
       </a>
     </div>
     <nav>
@@ -14,19 +16,18 @@
       </ul>
     </nav>
     <div class="header-actions">
+      <a routerLink="/cart" class="cart-icon-link">
+        <span class="cart-icon">🛒</span>
+      </a>
       <ng-container *ngIf="!(authService.isLoggedIn$ | async); else profileSection">
         <button class="btn btn-login" (click)="navigateToAuth()">Login</button>
       </ng-container>
       <ng-template #profileSection>
-        <div class="profile-button-wrapper"> <!-- Wrapper for positioning dropdown relative to button -->
+        <div class="profile-button-wrapper">
           <button class="btn btn-profile" (click)="toggleProfileDropdown()">Profile</button>
           <app-profile-dropdown *ngIf="showProfileDropdown" (closeDropdown)="closeProfileDropdown()"></app-profile-dropdown>
         </div>
       </ng-template>
-
-      <a routerLink="/cart" class="cart-icon-link">
-        <span class="cart-icon">🛒</span>
-      </a>
     </div>
   </div>
 </header>
