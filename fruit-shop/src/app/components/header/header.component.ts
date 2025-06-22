@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, HostListener } from '@angular/core'; // Added ElementRef, HostListener
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service'; // Added for cart count
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 
@@ -13,12 +14,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   // currentUser: User | null = null; // Not strictly needed here if dropdown handles user details
   private authSubscription!: Subscription;
+  cartItemCount = 0; // Added for cart badge
+  private cartSubscription!: Subscription; // Added for cart count
   showProfileDropdown = false;
 
   constructor(
     public authService: AuthService, // Keep public for async pipe in template
     private router: Router,
-    private elementRef: ElementRef // For detecting clicks outside dropdown
+    private elementRef: ElementRef, // For detecting clicks outside dropdown
+    private cartService: CartService // Added for cart count
   ) {}
 
   ngOnInit(): void {
@@ -28,11 +32,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.showProfileDropdown = false;
       }
     });
+
+    // Subscribe to cart item count
+    this.cartSubscription = this.cartService.cartItemCount$.subscribe(count => {
+      this.cartItemCount = count;
+    });
   }
 
   ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
+    }
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
     }
   }
 

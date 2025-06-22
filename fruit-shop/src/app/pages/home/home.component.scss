@@ -10,7 +10,7 @@
   min-height: 400px; /* Minimum height */
   max-height: 600px; /* Maximum height */
   /* Placeholder background image - replace with actual image URL */
-  background-image: url("https://images.pexels.com/photos/2090901/pexels-photo-2090901.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&dpr=1");
+  background-image: url("https://images.pexels.com/photos/3985062/pexels-photo-3985062.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&dpr=1");
   background-size: cover;
   background-position: center center;
   display: flex;
@@ -42,9 +42,13 @@
   font-family: var(--font-family-primary, sans-serif);
   font-size: 3.5em; /* Large headline */
   font-weight: 700;
-  color: white;
+  color: white; /* Fallback color */
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow for readability */
   margin-bottom: 0.5em;
+  background: -webkit-linear-gradient(45deg, #ffffff, #f0f0f0); /* Simple white/off-white gradient for text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Fallback for non-webkit browsers if needed, though color: white; is already there */
 }
 
 .hero-subheadline {
@@ -173,4 +177,67 @@
 
 .animate-delay-2 {
   animation-delay: 0.8s;
+}
+
+/* Category Filters */
+.category-filters {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.btn-category {
+  background-color: transparent;
+  color: var(--text-color-light, #555);
+  border: 1px solid var(--border-color, #e0e0e0);
+  padding: 8px 18px;
+  margin: 5px;
+  border-radius: 20px; /* Pill-shaped */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: capitalize; /* Ensure consistent casing if not using titlecase pipe */
+}
+
+.btn-category:hover {
+  background-color: var(--primary-green-light, #66bb6a);
+  color: white;
+  border-color: var(--primary-green-light, #66bb6a);
+}
+
+.btn-category.active {
+  background-color: var(--primary-green, #4CAF50);
+  color: white;
+  border-color: var(--primary-green, #4CAF50);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Hero Stats & Guarantees */
+.hero-stats-guarantees {
+  margin-top: 40px; /* Space above stats */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Space between stat items */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1em; /* Base size, can adjust */
+  color: #f0f0f0; /* Light color for text on dark overlay */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Subtle shadow for readability */
+}
+
+.stat-item .icon {
+  font-size: 1.5em; /* Larger icon */
+  /* Add specific icon styling if using an icon font or SVGs later */
+}
+
+/* Add new animation delay class if not already present from previous step */
+.animate-delay-3 {
+  animation-delay: 1.2s; /* Stagger after CTA button */
 }

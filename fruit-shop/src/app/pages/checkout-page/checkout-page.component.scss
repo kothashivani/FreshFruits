@@ -1,0 +1,485 @@
+.checkout-container {
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: var(--background-color, #fff);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* .checkout-container h2 has been moved into .checkout-header h2 */
+
+/* Cart Summary Section */
+.cart-summary-section {
+  margin-top: 30px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fdfdfd; /* Slightly off-white */
+}
+
+.cart-summary-section h3 {
+  font-size: 1.5em;
+  color: var(--text-color, #333);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.cart-items-list {
+  margin-bottom: 20px;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--light-gray-background, #f5f5f5);
+}
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+.item-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 20px;
+  border: 1px solid var(--border-color, #e0e0e0);
+}
+
+.item-details {
+  flex-grow: 1;
+}
+.item-details h4 {
+  font-size: 1.1em;
+  margin: 0 0 5px 0;
+  color: var(--primary-green-dark, #388e3c);
+}
+.item-details p {
+  font-size: 0.9em;
+  color: var(--text-color-light, #555);
+  margin: 0;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+.item-quantity span {
+  padding: 0 10px;
+  font-weight: 500;
+  min-width: 20px; /* Ensure space for number */
+  text-align: center;
+}
+.btn-quantity {
+  background-color: var(--light-gray-background, #f0f0f0);
+  border: 1px solid var(--border-color, #d0d0d0);
+  color: var(--text-color, #333);
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btn-quantity:hover {
+  background-color: #e0e0e0;
+}
+
+.item-total {
+  min-width: 100px; /* Ensure space for total */
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 0 20px;
+}
+
+.item-actions .btn-remove {
+  background: none;
+  border: none;
+  color: var(--accent-color, #ff9800); /* Or a red color for remove */
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+.item-actions .btn-remove:hover {
+  color: darken(var(--accent-color, #ff9800), 10%); /* This will need SCSS var fix if not using filter */
+  /* Using a CSS filter for simplicity as SCSS var fix is more involved here */
+  filter: brightness(0.8);
+}
+
+.cart-totals {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, #e0e0e0);
+  text-align: right;
+}
+.cart-totals p {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+.cart-totals strong {
+  color: var(--primary-green-dark, #388e3c);
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-color-light, #555);
+}
+.empty-cart-message h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: var(--text-color, #333);
+}
+
+/* Responsive adjustments for cart summary */
+@media (max-width: 768px) {
+  .cart-item-row {
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    position: relative; /* For absolute positioning of remove button */
+  }
+  .item-details {
+    flex-basis: 100%; /* Full width for details */
+    margin-bottom: 10px;
+    order: 1; /* Details first */
+  }
+  .item-image {
+    margin-bottom:10px;
+    order: 2;
+  }
+  .item-quantity {
+    margin: 0 10px 0 0; /* Adjust margin */
+    order: 3;
+  }
+  .item-total {
+    margin: 0 0 0 10px; /* Adjust margin */
+    text-align:left;
+    order: 4;
+  }
+  .item-actions {
+    position: absolute; /* Position remove button */
+    top: 15px;
+    right: 0;
+    order: 5;
+  }
+  /* .checkout-container h2 moved to .checkout-header h2 */
+}
+
+@media (max-width: 480px) {
+  .item-image img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  .item-details h4 { font-size: 1em; }
+  .item-total { font-size: 1em; }
+}
+
+/* Back to Shop / Continue Shopping Buttons */
+.checkout-header {
+  display: flex; /* Use flex to position button */
+  justify-content: space-between; /* Pushes h2 and button apart */
+  align-items: center;
+  margin-bottom: 30px; /* Original margin-bottom for h2 */
+}
+
+.checkout-header h2 {
+  text-align: center; /* Retain from original .checkout-container h2 */
+  color: var(--primary-green-dark, #388e3c);
+  font-size: 2.5em; /* Retain from original .checkout-container h2 */
+  margin-bottom: 0; /* Remove margin from h2 as it's handled by flex container */
+  flex-grow: 1; /* Allow h2 to take space if button is small */
+}
+
+@media (max-width: 768px) {
+  .checkout-header h2 {
+    font-size: 2em; /* Responsive size from original .checkout-container h2 */
+  }
+}
+
+
+.btn-back-to-shop {
+  padding: 8px 15px;
+  font-size: 0.9em;
+  text-decoration: none;
+  border-radius: 4px;
+  /* Styles for btn-outline-secondary type */
+  color: var(--primary-green-dark, #388e3c);
+  background-color: transparent;
+  border: 1px solid var(--primary-green-dark, #388e3c);
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.btn-back-to-shop:hover {
+  background-color: var(--primary-green-dark, #388e3c);
+  color: white;
+}
+
+.empty-cart-message .btn-shop-now {
+  /* .btn-primary styles are already defined in auth-page.scss, but might not be global.
+     If not global, copy .btn-primary styles here or make them global.
+     For now, assuming similar styling needed.
+  */
+  background-color: var(--primary-green, #4CAF50);
+  border-color: var(--primary-green, #4CAF50);
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  display: inline-block; /* For proper spacing and centering if text-align:center on parent */
+  margin-top: 20px;
+}
+
+.empty-cart-message .btn-shop-now:hover {
+  background-color: var(--primary-green-dark, #43a047);
+  border-color: var(--primary-green-dark, #43a047);
+}
+
+/* Checkout Forms Section General Styles */
+.checkout-forms-section {
+  margin-top: 30px;
+}
+
+.form-section {
+  margin-bottom: 40px;
+  padding: 25px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  background-color: #fdfdfd; /* Slightly off-white */
+}
+
+.form-section h4 {
+  font-size: 1.3em;
+  color: var(--primary-green, #4CAF50);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--light-gray-background, #f5f5f5);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px; /* Counteract .form-group padding */
+  margin-right: -10px;
+}
+
+.form-group {
+  padding-left: 10px; /* Gutter for columns */
+  padding-right: 10px;
+  margin-bottom: 15px; /* Default spacing */
+}
+
+/* Column width classes (assuming a 12-column conceptual grid) */
+.col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+.col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-md-6 { flex: 0 0 50%; max-width: 50%; }
+.col-md-12 { flex: 0 0 100%; max-width: 100%; }
+
+
+/* Input field styling (assuming form-control, is-invalid, invalid-feedback are globally styled or copied from auth-page.scss) */
+/* If not, copy relevant styles here: */
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--background-color, #fff); /* Ensure inputs have background */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-green, #4CAF50);
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: .25rem;
+  display: block; /* Ensure it takes space */
+}
+
+/* Responsive adjustments for forms */
+@media (max-width: 768px) {
+  .form-row .form-group {
+    flex-basis: 100%; /* Stack columns on smaller screens */
+    max-width: 100%;
+  }
+  .col-md-2, .col-md-4, .col-md-6, .col-md-12 {
+     flex: 0 0 100%; max-width: 100%;
+  }
+}
+
+/* Styles for form-check (checkbox) if not global */
+.form-check {
+  display: flex; /* Align checkbox and label nicely */
+  align-items: center;
+  margin-bottom: 20px; /* Space below checkbox */
+}
+
+.form-check-input {
+  margin-right: 10px; /* Space between checkbox and label */
+  /* Default browser styling for checkbox is often sufficient, or can be customized */
+  width: auto; /* Override form-control width if it gets applied */
+  height: auto;
+}
+
+.form-check-label {
+  margin-bottom: 0; /* Labels for checkboxes usually dont need bottom margin */
+  font-weight: normal; /* Standard label weight */
+}
+
+/* Payment Information Section */
+.payment-method-options {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px; /* Space between radio buttons */
+}
+
+.payment-method-options .form-check-inline { /* If form-check-inline class is used globally */
+  display: inline-flex; /* Align items nicely */
+  align-items: center;
+}
+.payment-method-options .form-check-input {
+  margin-right: 8px;
+}
+/* Assuming .form-check styles from previous step are sufficient for radio layout */
+
+.credit-card-fields {
+  padding: 15px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 4px;
+  background-color: #fcfcfc; /* Slightly different background for this subsection */
+}
+
+.security-badge {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: var(--light-gray-background, #f5f5f5);
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-color-light, #555);
+}
+
+.security-badge img {
+  height: 24px; /* Match SVG height */
+  margin-right: 10px;
+}
+
+.cod-message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: var(--light-green-background, #e8f5e9);
+  border: 1px solid var(--primary-green-light, #66bb6a);
+  color: var(--primary-green-dark, #388e3c);
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Ensure form-row and form-group from billing/shipping apply well here too */
+/* No new specific styles for inputs as they should use existing .form-control */
+
+/* Order Summary Section */
+.order-summary-section {
+  margin-top: 30px;
+  padding: 25px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  background-color: var(--light-gray-background, #f9f9f9);
+}
+
+.order-summary-section h4 {
+  font-size: 1.3em;
+  color: var(--primary-green-dark, #388e3c);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 1em;
+  color: var(--text-color-light, #555);
+}
+
+.summary-item span:last-child {
+  font-weight: 500;
+  color: var(--text-color, #333);
+}
+
+.coupon-code-item {
+  align-items: center; /* Align label, input, and button */
+  padding-top: 15px;
+  margin-top: 10px;
+  border-top: 1px dashed var(--border-color, #e0e0e0);
+}
+.coupon-code-item label {
+  margin-right: 10px;
+  font-weight:500;
+}
+.coupon-input {
+  flex-grow: 1;
+  margin-right: 10px;
+  max-width: 200px; /* Limit width of coupon input */
+}
+.form-control-sm { /* For smaller inputs like coupon */
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
+.apply-coupon-btn {
+  /* Assuming btn-secondary styles might exist or use custom */
+  padding: .25rem .75rem;
+  font-size: .875rem;
+  background-color: var(--text-color-light, #6c757d);
+  border-color: var(--text-color-light, #6c757d);
+  color: white;
+}
+.apply-coupon-btn:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+
+.total-item {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: var(--primary-green-dark, #388e3c);
+  padding-top: 15px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border-color, #e0e0e0);
+}
+.total-item span:last-child {
+    color: var(--primary-green-dark, #388e3c);
+}
+
+.btn-place-order {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1.2em;
+  font-weight: bold;
+  /* .btn-primary styles should apply if global */
+}
+.btn-place-order:disabled {
+  background-color: #a5d6a7; /* Lighter green when disabled */
+  border-color: #a5d6a7;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

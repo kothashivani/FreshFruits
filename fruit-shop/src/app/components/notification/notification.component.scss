@@ -1,0 +1,60 @@
+.toast-container {
+  position: fixed;
+  bottom: 0; /* Position at bottom */
+  left: 50%; /* Center horizontally */
+  /* transform: translateX(-50%); Will be handled by individual toasts for animation */
+  z-index: 2000; /* Above most other content */
+  display: flex;
+  flex-direction: column-reverse; /* Newest on top if messages are prepended */
+  align-items: center; /* Center toasts if they have different widths */
+  gap: 10px; /* Space between toasts */
+}
+
+.toast {
+  /* Individual toast positioning for animation */
+  position: relative; /* Or static if container handles all positioning */
+  bottom: 20px; /* Initial position for animation */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Correct centering */
+
+  min-width: 250px;
+  max-width: 400px;
+  padding: 15px 20px;
+  margin-bottom: 0; /* Gap is handled by flex container */
+  border-radius: var(--default-border-radius, 8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: white;
+  font-size: 0.95em;
+  cursor: pointer; /* Click to dismiss */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Toast types */
+.toast-success {
+  background-color: var(--primary-green, #4CAF50);
+}
+.toast-error {
+  background-color: #e74c3c; /* Red */
+}
+.toast-info {
+  background-color: #3498db; /* Blue */
+}
+.toast-warning {
+  background-color: #f39c12; /* Orange */
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  line-height: 1;
+  padding: 0 0 0 15px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.toast-close-btn:hover {
+  opacity: 1;
+}

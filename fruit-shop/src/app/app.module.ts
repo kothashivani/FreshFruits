@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Added for toast animations
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,10 +14,12 @@ import { NewsletterSubscriptionComponent } from './components/newsletter-subscri
 import { ProductsPlaceholderComponent } from './pages/products-placeholder/products-placeholder.component';
 import { AboutPlaceholderComponent } from './pages/about-placeholder/about-placeholder.component';
 import { ContactPlaceholderComponent } from './pages/contact-placeholder/contact-placeholder.component';
-import { CartPlaceholderComponent } from './pages/cart-placeholder/cart-placeholder.component';
+// import { CartPlaceholderComponent } from './pages/cart-placeholder/cart-placeholder.component'; // Removed
 import { AuthPageComponent } from './pages/auth-page/auth-page.component';
 import { ProfileDropdownComponent } from './components/profile-dropdown/profile-dropdown.component';
 import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 @NgModule({
@@ -31,13 +34,16 @@ import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
     ProductsPlaceholderComponent,
     AboutPlaceholderComponent,
     ContactPlaceholderComponent,
-    CartPlaceholderComponent,
+    // CartPlaceholderComponent, // Removed
     AuthPageComponent,
     ProfileDropdownComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    CheckoutPageComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, // Added for toast animations
     AppRoutingModule,
     ReactiveFormsModule
   ],

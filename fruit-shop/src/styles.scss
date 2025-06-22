@@ -1,34 +1,46 @@
 /* Global Styles */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
   --primary-green: #4CAF50;
   --primary-green-dark: #43a047;
   --primary-green-light: #66bb6a;
+  --primary-gradient: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark));
+  --secondary-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Example light grey gradient */
   --accent-color: #ff9800; /* Example accent: Orange */
-  --text-color: #333333;
-  --text-color-light: #555555;
+  --text-color-dark: #2c3e50;
+  --text-color-medium: #34495e;
+  --text-color: #333333; /* Original text-color, can be deprecated or aliased by medium/dark */
+  --text-color-light: #7f8c8d;
   --background-color: #ffffff;
   --light-gray-background: #f9f9f9;
   --light-green-background: #e8f5e9;
   --border-color: #e0e0e0;
-  --font-family-primary: "Montserrat", sans-serif;
-  --font-family-secondary: "Roboto", sans-serif;
+  --default-border-radius: 8px; /* More consistent rounded corners */
+  --card-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  --font-family-headings: "Playfair Display", serif; /* Example new heading font */
+  --font-family-body: "Lato", sans-serif; /* Example new body font */
+  --font-family-primary: "Playfair Display", serif; /* Alias for new heading font */
+  --font-family-secondary: "Lato", sans-serif; /* Alias for new body font */
 }
 
 body {
-  font-family: var(--font-family-secondary);
-  color: var(--text-color);
+  font-family: var(--font-family-body);
+  color: var(--text-color-medium);
   background-color: var(--background-color);
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-primary);
-  color: var(--primary-green-dark);
+  font-family: var(--font-family-headings);
+  color: var(--text-color-dark);
   font-weight: 700;
+  margin-top: 0; /* Base reset */
+  margin-bottom: 0.75em;
 }
 
 a {
@@ -120,4 +132,32 @@ router-outlet + * { /* This is a generic selector, might need to be more specifi
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* General Element Enhancements */
+button, .btn {
+  border-radius: var(--default-border-radius);
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out; /* More specific transitions */
+  outline: none; /* Base reset for outline */
+}
+button:active, .btn:active {
+  transform: translateY(1px); /* Slight press effect */
+  filter: brightness(0.95);
+}
+
+input.form-control, textarea.form-control {
+  border-radius: var(--default-border-radius);
+}
+
+.card, .product-card-container, .form-section {
+  border-radius: var(--default-border-radius);
+  box-shadow: var(--card-shadow);
+}
+/* END_OF_STYLES_SCSS_CONTENT_MARKER - This marker was for the prompt's script, can be removed or kept for future appends */
+
+/* Accessibility & Focus States */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary-green-dark, #388e3c);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.25); /* Optional: softer glow */
 }

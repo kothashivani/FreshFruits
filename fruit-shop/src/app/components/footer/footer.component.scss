@@ -1,5 +1,5 @@
 footer {
-  background-color: var(--text-color); /* Dark background for footer */
+  background: linear-gradient(135deg, #383838, #2c2c2c); /* Dark background for footer */
   color: #f0f0f0; /* Light text color */
   padding: 40px 0 0 0; /* Padding at the top, bottom padding will be in footer-bottom */
   margin-top: auto; /* Critical for sticky footer with app-root flex */

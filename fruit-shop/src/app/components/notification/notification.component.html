@@ -1,0 +1,9 @@
+<div class="toast-container">
+  <div *ngFor="let msg of messages$ | async; trackBy: trackByFn"
+       [@toastAnimation]
+       class="toast toast-{{ msg.type }}"
+       (click)="notificationService.remove(msg.id)"> <!-- Click to dismiss -->
+    {{ msg.message }}
+    <!-- <button class="toast-close-btn" (click)="notificationService.remove(msg.id)">&times;</button> -->
+  </div>
+</div>

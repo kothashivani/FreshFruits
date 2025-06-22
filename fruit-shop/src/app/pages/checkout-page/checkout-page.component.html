@@ -1,0 +1,268 @@
+<div class="checkout-container">
+  <div class="checkout-header">
+    <h2>Review Your Order</h2>
+    <a routerLink="/" class="btn btn-outline-secondary btn-back-to-shop">Continue Shopping</a>
+  </div>
+
+  <div class="cart-summary-section" *ngIf="cartItems.length > 0; else emptyCart">
+    <h3>Order Summary</h3>
+    <div class="cart-items-list">
+      <div *ngFor="let item of cartItems" class="cart-item-row">
+        <div class="item-image">
+          <img [src]="getProductImageUrl(item)" [alt]="item.product.name">
+        </div>
+        <div class="item-details">
+          <h4>{{ item.product.name }}</h4>
+          <p>Price: {{ item.product.price | currency }}</p>
+        </div>
+        <div class="item-quantity">
+          <button (click)="decreaseQuantity(item)" class="btn-quantity">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="btn-quantity">+</button>
+        </div>
+        <div class="item-total">
+          <p>{{ item.totalPrice | currency }}</p>
+        </div>
+        <div class="item-actions">
+          <button (click)="removeItem(item)" class="btn-remove">Remove</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-totals">
+      <p>Subtotal: <strong>{{ cartTotal | currency }}</strong></p>
+      <!-- Shipping, Tax, and Grand Total will be added later -->
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-message">
+      <h3>Your Cart is Empty</h3>
+      <p>Looks like you haven\'t added anything to your cart yet.</p>
+      <a routerLink="/" class="btn btn-primary btn-shop-now">Shop Now!</a>
+    </div>
+  </ng-template>
+
+  <!-- Billing, Shipping, Payment sections will be added here -->
+  <div class="checkout-forms-section" *ngIf="cartItems.length > 0">
+<div class="form-section billing-address-section">
+      <h4>Billing Address</h4>
+      <form [formGroup]="billingForm" (ngSubmit)="onBillingSubmit()" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" formControlName="fullName" class="form-control" placeholder="John M. Doe" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.fullName.errors }">
+            <div *ngIf="billingFormSubmitted && bf.fullName.errors" class="invalid-feedback">
+              <div *ngIf="bf.fullName.errors.required">Full name is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="addressLine1">Address Line 1</label>
+          <input type="text" id="addressLine1" formControlName="addressLine1" class="form-control" placeholder="1234 Main St" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.addressLine1.errors }">
+          <div *ngIf="billingFormSubmitted && bf.addressLine1.errors" class="invalid-feedback">
+            <div *ngIf="bf.addressLine1.errors.required">Address is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="addressLine2">Address Line 2 (Optional)</label>
+          <input type="text" id="addressLine2" formControlName="addressLine2" class="form-control" placeholder="Apartment, studio, or floor">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="city">City</label>
+            <input type="text" id="city" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.city.errors }">
+            <div *ngIf="billingFormSubmitted && bf.city.errors" class="invalid-feedback">
+              <div *ngIf="bf.city.errors.required">City is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="state">State / Province</label>
+            <input type="text" id="state" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.state.errors }">
+            <div *ngIf="billingFormSubmitted && bf.state.errors" class="invalid-feedback">
+              <div *ngIf="bf.state.errors.required">State is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="zipCode">ZIP / Postal</label>
+            <input type="text" id="zipCode" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.zipCode.errors }">
+            <div *ngIf="billingFormSubmitted && bf.zipCode.errors" class="invalid-feedback">
+              <div *ngIf="bf.zipCode.errors.required">ZIP code is required.</div>
+              <div *ngIf="bf.zipCode.errors.pattern">Invalid ZIP code format.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="country">Country</label>
+            <input type="text" id="country" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.country.errors }">
+            <div *ngIf="billingFormSubmitted && bf.country.errors" class="invalid-feedback">
+                <div *ngIf="bf.country.errors.required">Country is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" formControlName="phone" class="form-control" placeholder="+1234567890" [ngClass]="{ 'is-invalid': billingFormSubmitted && bf.phone.errors }">
+            <div *ngIf="billingFormSubmitted && bf.phone.errors" class="invalid-feedback">
+              <div *ngIf="bf.phone.errors.required">Phone number is required.</div>
+              <div *ngIf="bf.phone.errors.pattern">Invalid phone number format.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <button type="submit" class="btn btn-primary">Save Billing Address</button> -->
+        <!-- Submission will likely be part of a larger checkout submit button later -->
+      </form>
+    </div>
+<div class="form-section shipping-address-section">
+      <h4>Shipping Address</h4>
+      <div class="form-group form-check">
+        <input type="checkbox" id="sameAsBilling" class="form-check-input" [(ngModel)]="shippingSameAsBilling" (ngModelChange)="onShippingSameAsBillingChange()" [formControl]="null"> <!-- Use [formControl]="null" if it is not part of any reactive form -->
+        <label class="form-check-label" for="sameAsBilling">Shipping address is the same as my billing address</label>
+      </div>
+
+      <form [formGroup]="shippingForm" (ngSubmit)="onShippingSubmit()" novalidate *ngIf="!shippingSameAsBilling">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="shippingFullName">Full Name</label>
+            <input type="text" id="shippingFullName" formControlName="fullName" class="form-control" placeholder="John M. Doe" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.fullName.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.fullName.errors" class="invalid-feedback">
+              <div *ngIf="sf.fullName.errors.required">Full name is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="shippingAddressLine1">Address Line 1</label>
+          <input type="text" id="shippingAddressLine1" formControlName="addressLine1" class="form-control" placeholder="1234 Main St" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.addressLine1.errors }">
+          <div *ngIf="shippingFormSubmitted && sf.addressLine1.errors" class="invalid-feedback">
+            <div *ngIf="sf.addressLine1.errors.required">Address is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="shippingAddressLine2">Address Line 2 (Optional)</label>
+          <input type="text" id="shippingAddressLine2" formControlName="addressLine2" class="form-control" placeholder="Apartment, studio, or floor">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="shippingCity">City</label>
+            <input type="text" id="shippingCity" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.city.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.city.errors" class="invalid-feedback">
+              <div *ngIf="sf.city.errors.required">City is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="shippingState">State / Province</label>
+            <input type="text" id="shippingState" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.state.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.state.errors" class="invalid-feedback">
+              <div *ngIf="sf.state.errors.required">State is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="shippingZipCode">ZIP / Postal</label>
+            <input type="text" id="shippingZipCode" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.zipCode.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.zipCode.errors" class="invalid-feedback">
+              <div *ngIf="sf.zipCode.errors.required">ZIP code is required.</div>
+              <div *ngIf="sf.zipCode.errors.pattern">Invalid ZIP code format.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="shippingCountry">Country</label>
+            <input type="text" id="shippingCountry" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.country.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.country.errors" class="invalid-feedback">
+                <div *ngIf="sf.country.errors.required">Country is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="shippingPhone">Phone Number</label>
+            <input type="tel" id="shippingPhone" formControlName="phone" class="form-control" placeholder="+1234567890" [ngClass]="{ 'is-invalid': shippingFormSubmitted && sf.phone.errors }">
+            <div *ngIf="shippingFormSubmitted && sf.phone.errors" class="invalid-feedback">
+              <div *ngIf="sf.phone.errors.required">Phone number is required.</div>
+              <div *ngIf="sf.phone.errors.pattern">Invalid phone number format.</div>
+            </div>
+          </div>
+        </div>
+        <!-- <button type="submit" class="btn btn-primary">Save Shipping Address</button> -->
+      </form>
+    </div>
+<div class="form-section payment-information-section">
+      <h4>Payment Information</h4>
+
+      <div class="payment-method-options">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCreditCard" value="creditCard" checked (change)="selectedPaymentMethod='creditCard'" [formControl]="null">
+          <label class="form-check-label" for="paymentCreditCard">Credit / Debit Card</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod" (change)="selectedPaymentMethod='cod'" [formControl]="null">
+          <label class="form-check-label" for="paymentCOD">Cash on Delivery (COD)</label>
+        </div>
+      </div>
+
+      <!-- Credit Card Fields (shown conditionally) -->
+      <div class="credit-card-fields" *ngIf="selectedPaymentMethod === 'creditCard'">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber" class="form-control" placeholder="•••• •••• •••• ••••">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="cardExpiry">Expiry Date</label>
+            <input type="text" id="cardExpiry" class="form-control" placeholder="MM / YY">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cardCvv">CVV / CVC</label>
+            <input type="text" id="cardCvv" class="form-control" placeholder="•••">
+          </div>
+        </div>
+        <div class="security-badge">
+          <img src="assets/images/security-badge-placeholder.svg" alt="Secure Payment">
+          <span>Your payment information is safe with us.</span>
+        </div>
+      </div>
+
+      <!-- COD Message (shown conditionally) -->
+      <div class="cod-message" *ngIf="selectedPaymentMethod === 'cod'">
+        <p>You will pay in cash upon delivery of your order.</p>
+      </div>
+    </div>
+  </div>
+
+<div class="order-summary-section">
+      <h4>Order Summary</h4>
+      <div class="summary-item">
+        <span>Subtotal</span>
+        <span>{{ cartTotal | currency }}</span>
+      </div>
+      <div class="summary-item">
+        <span>Shipping</span>
+        <span>{{ shippingCost | currency }}</span>
+      </div>
+      <div class="summary-item">
+        <span>Tax ({{ taxRate * 100 }}%)</span>
+        <span>{{ calculatedTax | currency }}</span>
+      </div>
+      <div class="summary-item coupon-code-item">
+        <label for="couponCode">Coupon Code:</label>
+        <input type="text" id="couponCode" class="form-control form-control-sm coupon-input" placeholder="Enter code">
+        <button class="btn btn-secondary btn-sm apply-coupon-btn" (click)="applyCoupon()">Apply</button>
+      </div>
+      <div class="summary-item total-item">
+        <span>Total</span>
+        <span>{{ grandTotal | currency }}</span>
+      </div>
+      <button class="btn btn-primary btn-block btn-place-order" (click)="placeOrder()" [disabled]="!isCheckoutFormValid()">
+        Place Order
+      </button>
+    </div>
+</div>

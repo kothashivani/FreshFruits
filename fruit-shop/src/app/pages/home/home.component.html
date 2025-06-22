@@ -6,14 +6,36 @@
       <h1 class="hero-headline animate-fade-in-up">Experience Farm-Fresh Goodness</h1>
       <p class="hero-subheadline animate-fade-in animate-delay-1">Delicious, healthy, and delivered straight to your door.</p>
       <button class="btn btn-hero-cta animate-fade-in animate-delay-2" (click)="scrollToProducts()">Shop All Fruits</button>
+      <div class="hero-stats-guarantees animate-fade-in animate-delay-3">
+        <div class="stat-item">
+          <span class="icon">🌟</span> <!-- Placeholder icon -->
+          <span>Freshness Guaranteed</span>
+        </div>
+        <div class="stat-item">
+          <span class="icon">🚚</span> <!-- Placeholder icon -->
+          <span>Fast Delivery</span>
+        </div>
+        <div class="stat-item">
+          <span class="icon">😊</span> <!-- Placeholder icon -->
+          <span>1000+ Happy Customers</span>
+        </div>
+      </div>
     </div>
   </section>
   <!-- End New Hero Section -->
 
   <section class="product-grid-section" #productGrid> <!-- Added #productGrid for scrolling -->
+    <div class="category-filters">
+    <button *ngFor="let category of categories"
+            class="btn btn-category"
+            [class.active]="category === selectedCategory || (category === 'All' && selectedCategory === null)"
+            (click)="filterByCategory(category === 'All' ? null : category)">
+      {{ category | titlecase }}
+    </button>
+  </div>
     <h2>Our Products</h2>
     <div class="product-grid">
-      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+      <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
     </div>
   </section>
   <app-testimonials></app-testimonials>
