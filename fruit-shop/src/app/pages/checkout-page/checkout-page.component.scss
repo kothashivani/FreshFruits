@@ -104,7 +104,6 @@
   font-size: 0.9em;
 }
 .item-actions .btn-remove:hover {
-  color: darken(var(--accent-color, #ff9800), 10%); /* This will need SCSS var fix if not using filter */
   /* Using a CSS filter for simplicity as SCSS var fix is more involved here */
   filter: brightness(0.8);
 }

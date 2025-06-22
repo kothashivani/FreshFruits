@@ -120,7 +120,7 @@
 <div class="form-section shipping-address-section">
       <h4>Shipping Address</h4>
       <div class="form-group form-check">
-        <input type="checkbox" id="sameAsBilling" class="form-check-input" [(ngModel)]="shippingSameAsBilling" (ngModelChange)="onShippingSameAsBillingChange()" [formControl]="null"> <!-- Use [formControl]="null" if it is not part of any reactive form -->
+        <input type="checkbox" id="sameAsBilling" class="form-check-input" [(ngModel)]="shippingSameAsBilling" (ngModelChange)="onShippingSameAsBillingChange()">
         <label class="form-check-label" for="sameAsBilling">Shipping address is the same as my billing address</label>
       </div>
 
@@ -198,11 +198,11 @@
 
       <div class="payment-method-options">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCreditCard" value="creditCard" checked (change)="selectedPaymentMethod='creditCard'" [formControl]="null">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCreditCard" value="creditCard" checked (change)="selectedPaymentMethod='creditCard'">
           <label class="form-check-label" for="paymentCreditCard">Credit / Debit Card</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod" (change)="selectedPaymentMethod='cod'" [formControl]="null">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod" (change)="selectedPaymentMethod='cod'">
           <label class="form-check-label" for="paymentCOD">Cash on Delivery (COD)</label>
         </div>
       </div>
