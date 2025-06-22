@@ -16,8 +16,8 @@
       </ul>
     </nav>
     <div class="header-actions">
-      <a routerLink="/cart" class="cart-icon-link">
-        <span class="cart-icon">🛒</span>
+      <a routerLink="/checkout" class="cart-icon-link">
+        <span class="cart-icon">🛒</span><span *ngIf="cartItemCount > 0" class="cart-badge">{{ cartItemCount }}</span>
       </a>
       <ng-container *ngIf="!(authService.isLoggedIn$ | async); else profileSection">
         <button class="btn btn-login" (click)="navigateToAuth()">Login</button>

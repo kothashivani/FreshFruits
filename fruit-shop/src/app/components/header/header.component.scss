@@ -1,7 +1,7 @@
 $accent-color-sass: #ff9800;
 
 header {
-  background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green-dark));
+  background: var(--primary-gradient);
   padding: 10px 0; /* Reduced padding slightly */
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -161,4 +161,20 @@ nav ul li a.active-link {
 
 .profile-button-wrapper {
   position: relative; /* This is crucial for absolute positioning of the dropdown */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;      /* Adjust for desired vertical position */
+  right: -10px;   /* Adjust for desired horizontal position */
+  background-color: var(--accent-color, #ff9800); /* Or a dedicated badge color like red */
+  color: white;
+  border-radius: 50%; /* Circular badge */
+  padding: 2px 6px;   /* Adjust padding to control size */
+  font-size: 0.75em; /* Smaller font for badge number */
+  font-weight: bold;
+  line-height: 1;   /* Ensure text is centered vertically */
+  min-width: 18px;  /* Ensure circle for single digit */
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }

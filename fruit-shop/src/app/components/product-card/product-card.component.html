@@ -1,7 +1,20 @@
 <div class="product-card-container">
+  <div class="card-header-icons">
+    <span *ngIf="product.badge" class="product-badge badge-{{product.badge | lowercase}}">{{ product.badge }}</span>
+    <button class="btn-icon btn-wishlist" [class.wishlisted]="product.isWishlisted" (click)="toggleWishlist(product)">
+      <span class="icon-heart">&#x2764;</span> <!-- Using HTML entity for heart -->
+    </button>
+  </div>
   <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
   <h3>{{ product.name }}</h3>
-  <p class="price">{{ product.price }}</p>
+
+  <div class="product-rating" *ngIf="product.rating">
+    <!-- Simple star display (not interactive yet) -->
+    <span *ngFor="let star of getStarRating(product.rating)" class="star {{star}}">&#9733;</span>
+    <span class="reviews-count" *ngIf="product.reviewsCount">({{ product.reviewsCount }})</span>
+  </div>
+
+  <p class="price">{{ product.price | currency }}</p>
   <p class="description">{{ product.description }}</p>
-  <button>Add to Cart</button>
+  <button (click)="addToCart()" class="btn-add-to-cart">{{ buttonText }}</button>
 </div>
