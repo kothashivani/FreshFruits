@@ -120,7 +120,7 @@
 <div class="form-section shipping-address-section">
       <h4>Shipping Address</h4>
       <div class="form-group form-check">
-        <input type="checkbox" id="sameAsBilling" class="form-check-input" [(ngModel)]="shippingSameAsBilling" (ngModelChange)="onShippingSameAsBillingChange()">
+        <input type="checkbox" id="sameAsBilling" class="form-check-input" [(ngModel)]="shippingSameAsBilling" (ngModelChange)="onShippingSameAsBillingChange($event)">
         <label class="form-check-label" for="sameAsBilling">Shipping address is the same as my billing address</label>
       </div>
 

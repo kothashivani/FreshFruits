@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Added for toast animations
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // Added FormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +45,8 @@ import { NotificationComponent } from './components/notification/notification.co
     BrowserModule,
     BrowserAnimationsModule, // Added for toast animations
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule // Added for ngModel
   ],
   providers: [],
   bootstrap: [AppComponent]
