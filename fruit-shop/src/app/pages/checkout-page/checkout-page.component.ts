@@ -93,7 +93,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
 
   get sf() { return this.shippingForm.controls; }
 
-  onShippingSameAsBillingChange(): void {
+  onShippingSameAsBillingChange(checked: boolean): void { // Parameter added
+    this.shippingSameAsBilling = checked; // Explicitly set property from event
     if (this.shippingSameAsBilling) {
       this.shippingForm.disable();
       this.shippingForm.reset();
